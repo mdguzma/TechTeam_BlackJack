@@ -13,7 +13,7 @@ package ca.sheridancollege.project;
  */
 public abstract class Player {
 
-    private String name; //the unique name for this player
+    private String name; // the unique name for this player
 
     /**
      * A constructor that allows you to set the player's unique ID
@@ -47,3 +47,4 @@ public abstract class Player {
     public abstract void play();
 
 }
+
