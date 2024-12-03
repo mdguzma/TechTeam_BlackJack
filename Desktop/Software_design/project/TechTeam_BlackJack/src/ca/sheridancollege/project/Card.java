@@ -24,7 +24,7 @@ public class Card {
     public Suit getSuit() {
         return suit;
     }
-
+// Method to evaluate the players hand. Certain card have number and suit's return 10
     public int getNumericValue() {
         switch (value) {
             case ACE: return 1; // Dynamically adjusted in Blackjack logic

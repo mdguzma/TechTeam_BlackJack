@@ -70,7 +70,7 @@ public class BlackjackGame extends Game {
     public void declareWinner() {
         System.out.println("Winner declared after evaluation.");
     }
-
+//  Function to deal cards
     public void dealInitialCards() {
         for (Player player : getPlayers()) {
             player.receiveCard(deck.getCards().remove(0));
@@ -79,7 +79,7 @@ public class BlackjackGame extends Game {
         dealer.receiveCard(deck.getCards().remove(0));
         dealer.receiveCard(deck.getCards().remove(0));
     }
-
+//  Game logic, giving the player the option to hit/stand
     public void processPlayerAction(Player player, String action) {
         if ("Hit".equalsIgnoreCase(action)) {
             player.receiveCard(deck.getCards().remove(0));
@@ -92,6 +92,7 @@ public class BlackjackGame extends Game {
         }
     }
 
+//    Method to evaluate the outcome of the game. Win/Loss/Tie
     public void evaluateResult() {
         int dealerValue = calculateHandValue(dealer);
 
@@ -137,6 +138,7 @@ public class BlackjackGame extends Game {
     public static void main(String[] args) {
         BlackjackGame blackjackGame = new BlackjackGame("Blackjack");
 
+        
         // Add players
         blackjackGame.addPlayer(new Player("Alice", 1000L) {
             @Override
