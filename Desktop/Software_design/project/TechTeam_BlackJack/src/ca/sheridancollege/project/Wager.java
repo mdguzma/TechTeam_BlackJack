@@ -6,7 +6,7 @@ package ca.sheridancollege.project;
 
 import java.util.Scanner;
 
-/**
+/** 
  *
  * @author mdguzman
  */
@@ -30,7 +30,6 @@ public class Wager {
                 System.out.println("Wager exceeds available balance. Your balance is: " + balance);
             }
         }
-
         return wager;
     }
     

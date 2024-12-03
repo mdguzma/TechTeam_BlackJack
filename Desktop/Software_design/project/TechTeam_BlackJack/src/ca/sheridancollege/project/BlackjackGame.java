@@ -169,22 +169,5 @@ public class BlackjackGame extends Game {
         return value;
     }
 
-    // Add the main method to run the game
-    public static void main(String[] args) {
-        BlackjackGame blackjackGame = new BlackjackGame("Blackjack");
 
-        ValidateUsername.validUsername();
-        // User registration with password validation
-        ValidatePassword.validPassword();
-
-        // Add players
-        blackjackGame.addPlayer(new Player(ValidateUsername.username, 1000L) {
-            @Override
-            public void play() { // Player logic handled in play method
-            }
-        });
-        
-        // Start the game
-        blackjackGame.play();
-    }
 }
