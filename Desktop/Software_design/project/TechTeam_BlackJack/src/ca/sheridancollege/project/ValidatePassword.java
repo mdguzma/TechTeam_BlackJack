@@ -23,7 +23,7 @@ public class ValidatePassword {
         System.out.println("Greater than 7 characters, at least 1 uppercase and 1 special character.");
 
         while (!isValid) {
-            System.out.println("Enter a password:");
+            System.out.print("Enter a password: ");
             String password = in.next();
 
             if (!checkLength(password)) {

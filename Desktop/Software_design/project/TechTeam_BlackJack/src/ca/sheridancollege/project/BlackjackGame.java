@@ -25,7 +25,7 @@ public class BlackjackGame extends Game {
 
     @Override
     public void play() {
-        System.out.println("Starting Blackjack Game!");
+        System.out.println("\nStarting Blackjack Game!");
         boolean continueGame = true;
 
         while (continueGame) {
@@ -69,6 +69,8 @@ public class BlackjackGame extends Game {
     }
 
     private void dealerLogic() {
+        System.out.println();
+        System.out.println("Dealer's turn...");
         while (calculateHandValue(dealer) < 17) {
             dealer.receiveCard(deck.getCards().remove(0));
         }
@@ -91,38 +93,59 @@ public class BlackjackGame extends Game {
     
 //  Game logic, giving the player the option to hit/stand
     public void processPlayerAction(Player player, String action) {
+        
         if ("Hit".equalsIgnoreCase(action)) {
             player.receiveCard(deck.getCards().remove(0));
-            if (calculateHandValue(player) > 21) {
-                System.out.println("Bust! " + player.getName() + " lost the round.");
+            
+            int playerValue = calculateHandValue(player);
+            
+            if (playerValue > 21) {
+                System.out.println("Bust! " + player.getName() + " lost the round with the hand value of " + playerValue);
                 System.out.println();
-                player.clearHand();
-            }
+
+                player.setStanding(true);
+            } 
         } else if ("Stand".equalsIgnoreCase(action)) {
             player.setStanding(true);
+            System.out.println();
+            System.out.println(player.getName() + " stands with a hand value of " + calculateHandValue(player));
+            System.out.println("Dealer's hand value is " + calculateHandValue(dealer) + dealer.getHand());
         } else{
             System.out.println("Unknown action. Please enter 'Hit' or 'Stand'.");
+        
         }
     }
 
 //    Method to evaluate the outcome of the game. Win/Loss/Tie
     public void evaluateResult() {
         int dealerValue = calculateHandValue(dealer);
-
+        System.out.println("\nDealer's final hand value is " + dealerValue + " " + dealer.getHand());
+        
+        
         for (Player player : getPlayers()) {
             int playerValue = calculateHandValue(player);
-
+            System.out.println(player.getName() + "'s final hand value is " + playerValue + " " + player.getHand());
+            
             if (playerValue > 21) {
-                System.out.println(player.getName() + " busted and lost their bet.");
+                System.out.println();
+                System.out.println(player.getName() + " busted with the hand value of " + playerValue);
+                if (dealerValue > 21) {
+                    System.out.println("Dealer also busted, tie game!");
+                    player.addWinnings(player.getCurrentBet()); 
+                } else {
+                    System.out.println(player.getName() + " loses to the dealer.");
+                }
             } else if (dealerValue > 21 || playerValue > dealerValue) {
                 System.out.println();
-                System.out.println(player.getName() + " wins!");
+                System.out.println(player.getName() + " wins with the hand value of " + playerValue);
                 player.addWinnings(2 * player.getCurrentBet());
             } else if (playerValue == dealerValue) {
-                System.out.println(player.getName() + " ties with the dealer.");
+                System.out.println();
+                System.out.println(player.getName() + " ties with the dealer at the hand value of " + playerValue);
                 player.addWinnings(player.getCurrentBet());
             } else {
-                System.out.println(player.getName() + " loses to the dealer.");
+                System.out.println();
+                System.out.println(player.getName() + " loses to the dealer with the hand value of " + playerValue);
             }
             player.clearHand();
         }
@@ -162,12 +185,7 @@ public class BlackjackGame extends Game {
             public void play() { // Player logic handled in play method
             }
         });
-        blackjackGame.addPlayer(new Player("Bob", 1000L) {
-            @Override
-            public void play() {
-                // Player logic handled in play method
-            }
-        });
+        
         // Start the game
         blackjackGame.play();
     }
