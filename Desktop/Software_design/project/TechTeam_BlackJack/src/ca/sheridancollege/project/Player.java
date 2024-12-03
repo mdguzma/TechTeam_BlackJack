@@ -70,8 +70,6 @@ public abstract class Player {
     public boolean hasSufficientBalance(long amount) {
         return balance >= amount;
     }
-    
-    
 
     public abstract void play();
 }

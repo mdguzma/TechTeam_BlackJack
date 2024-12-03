@@ -15,7 +15,7 @@ public class ValidateUsername {
     
     public static void validUsername(){
         Scanner in = new Scanner(System.in);
-        System.out.println("Enter a username: ");
+        System.out.print("Enter a username: ");
         username = in.next();
     }
 }

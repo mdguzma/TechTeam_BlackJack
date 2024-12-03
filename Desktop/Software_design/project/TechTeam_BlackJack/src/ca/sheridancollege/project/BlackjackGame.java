@@ -33,17 +33,22 @@ public class BlackjackGame extends Game {
             dealInitialCards();
 
             for (Player player : getPlayers()) {
+                System.out.println();
                 System.out.println("Player: " + player.getName() + " - Credits: " + player.getBalance());
 
+                System.out.println();
                 System.out.print("Enter bet amount: ");
                 long bet = scanner.nextLong();
                 player.placeBet(bet);
 
                 while (!player.isStanding()) {
+                    System.out.println();
                     System.out.println("Hand: " + player.getHand());
                     System.out.println("Hand Value: " + calculateHandValue(player));
 
+                    System.out.println();
                     System.out.print("Action (Hit/Stand): ");
+                    
                     String action = scanner.next();
 
                     processPlayerAction(player, action);
@@ -52,11 +57,14 @@ public class BlackjackGame extends Game {
 
             dealerLogic();
             evaluateResult();
-
+            
+            System.out.println();
             System.out.print("Play another round? (yes/no): ");
+            
             continueGame = scanner.next().equalsIgnoreCase("yes");
         }
-
+        
+        System.out.println();
         System.out.println("Game Over! Thanks for playing.");
     }
 
@@ -87,6 +95,7 @@ public class BlackjackGame extends Game {
             player.receiveCard(deck.getCards().remove(0));
             if (calculateHandValue(player) > 21) {
                 System.out.println("Bust! " + player.getName() + " lost the round.");
+                System.out.println();
                 player.clearHand();
             }
         } else if ("Stand".equalsIgnoreCase(action)) {
@@ -106,6 +115,7 @@ public class BlackjackGame extends Game {
             if (playerValue > 21) {
                 System.out.println(player.getName() + " busted and lost their bet.");
             } else if (dealerValue > 21 || playerValue > dealerValue) {
+                System.out.println();
                 System.out.println(player.getName() + " wins!");
                 player.addWinnings(2 * player.getCurrentBet());
             } else if (playerValue == dealerValue) {
