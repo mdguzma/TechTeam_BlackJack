@@ -36,10 +36,9 @@ public class BlackjackGame extends Game {
                 System.out.println();
                 System.out.println("Player: " + player.getName() + " - Credits: " + player.getBalance());
 
-                System.out.println();
-                System.out.print("Enter bet amount: ");
-                long bet = scanner.nextLong();
-                player.placeBet(bet);
+                // Validate wager and set the player's bet
+                long bet = Wager.validWager(player.getBalance());
+                player.placeBet(bet);            
 
                 while (!player.isStanding()) {
                     System.out.println();
@@ -60,7 +59,6 @@ public class BlackjackGame extends Game {
             
             System.out.println();
             System.out.print("Play another round? (yes/no): ");
-            
             continueGame = scanner.next().equalsIgnoreCase("yes");
         }
         
