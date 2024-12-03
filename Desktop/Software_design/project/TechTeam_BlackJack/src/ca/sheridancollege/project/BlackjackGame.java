@@ -8,7 +8,6 @@ package ca.sheridancollege.project;
  *
  * @author solty
  */
-//Test Push
 public class BlackjackGame extends Game {
     private GroupOfCards deck;
     private Player dealer;

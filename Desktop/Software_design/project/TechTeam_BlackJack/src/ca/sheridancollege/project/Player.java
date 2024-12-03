@@ -5,6 +5,9 @@
  */
 package ca.sheridancollege.project;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class that models each Player in the game. Players have an identifier, which should be unique.
  *
@@ -15,7 +18,7 @@ package ca.sheridancollege.project;
 
     private String name; // the unique name for this player
     private List<Card> hand; // the player's current hand of cards
-    private double balance; // the player's current balance
+    private Long balance; // the player's current balance
     private double currentBet; // the player's current bet amount
     private boolean isStanding; // flag to track if the player has chosen to stand
 
@@ -24,7 +27,7 @@ package ca.sheridancollege.project;
      *
      * @param name the unique ID to assign to this player.
      */
-    public Player(String name, double balance) {
+    public Player(String name, Long balance) {
         this.name = name;
         this.balance = balance;
         this.hand = new ArrayList<>();
@@ -52,7 +55,7 @@ package ca.sheridancollege.project;
      *
      * @param amount the amount to bet
      */
-    public void placeBet(double amount) {
+    public void placeBet(Long amount) {
         this.currentBet = amount;
         this.balance -= amount;
     }
