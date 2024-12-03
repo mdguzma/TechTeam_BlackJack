@@ -70,6 +70,7 @@ public class BlackjackGame extends Game {
     public void declareWinner() {
         System.out.println("Winner declared after evaluation.");
     }
+    
 //  Function to deal cards
     public void dealInitialCards() {
         for (Player player : getPlayers()) {
@@ -79,6 +80,7 @@ public class BlackjackGame extends Game {
         dealer.receiveCard(deck.getCards().remove(0));
         dealer.receiveCard(deck.getCards().remove(0));
     }
+    
 //  Game logic, giving the player the option to hit/stand
     public void processPlayerAction(Player player, String action) {
         if ("Hit".equalsIgnoreCase(action)) {
@@ -89,6 +91,8 @@ public class BlackjackGame extends Game {
             }
         } else if ("Stand".equalsIgnoreCase(action)) {
             player.setStanding(true);
+        } else{
+            System.out.println("Unknown action. Please enter 'Hit' or 'Stand'.");
         }
     }
 
@@ -138,12 +142,14 @@ public class BlackjackGame extends Game {
     public static void main(String[] args) {
         BlackjackGame blackjackGame = new BlackjackGame("Blackjack");
 
-        
+        ValidateUsername.validUsername();
+        // User registration with password validation
+        ValidatePassword.validPassword();
+
         // Add players
-        blackjackGame.addPlayer(new Player("Alice", 1000L) {
+        blackjackGame.addPlayer(new Player(ValidateUsername.username, 1000L) {
             @Override
-            public void play() {
-                // Player logic handled in play method
+            public void play() { // Player logic handled in play method
             }
         });
         blackjackGame.addPlayer(new Player("Bob", 1000L) {
@@ -152,7 +158,6 @@ public class BlackjackGame extends Game {
                 // Player logic handled in play method
             }
         });
-
         // Start the game
         blackjackGame.play();
     }
