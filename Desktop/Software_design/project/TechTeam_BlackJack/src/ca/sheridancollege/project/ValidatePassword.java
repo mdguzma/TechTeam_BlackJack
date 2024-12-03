@@ -32,7 +32,8 @@ public class ValidatePassword {
         }else{
             return false;}
     }
-public static boolean checkUpper(String password){
+    
+    public static boolean checkUpper(String password){
         for(char c : password.toCharArray()){
             if(Character.isUpperCase(c)){
                 return true;

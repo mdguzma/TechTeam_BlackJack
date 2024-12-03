@@ -39,6 +39,9 @@ public abstract class Player {
     }
 
     public void placeBet(long amount) {
+        if (!hasSufficientBalance(amount)) {
+            throw new IllegalArgumentException("Insufficient balance to place the bet.");
+        }
         this.currentBet = amount;
         this.balance -= amount;
     }
@@ -63,6 +66,12 @@ public abstract class Player {
         hand.clear();
         isStanding = false;
     }
+    
+    public boolean hasSufficientBalance(long amount) {
+        return balance >= amount;
+    }
+    
+    
 
     public abstract void play();
 }

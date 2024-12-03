@@ -49,4 +49,9 @@ public class Card {
     public String toString() {
         return value + " of " + suit;
     }
+    
+    public int getDynamicAceValue(int currentHandValue) {
+        return currentHandValue + 11 > 21 ? 1 : 11;
+    }
+
 }

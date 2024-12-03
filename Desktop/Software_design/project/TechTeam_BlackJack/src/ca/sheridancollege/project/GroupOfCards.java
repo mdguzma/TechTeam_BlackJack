@@ -32,5 +32,12 @@ public class GroupOfCards {
     public void shuffle() {
         Collections.shuffle(cards);
     }
+    
+    public Card drawCard() {
+        if (cards.isEmpty()) {
+            throw new IllegalStateException("No cards left in the deck.");
+        }
+        return cards.remove(0);
+    }
 }
 
